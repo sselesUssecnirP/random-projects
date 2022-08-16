@@ -1,0 +1,10 @@
+
+table {
+    margin: 0 auto;
+    border: 3px rgb(224, 160, 22) solid;
+}
+
+td {
+    border: 3px rgb(192, 230, 27) solid;
+    padding: 24px;
+}
