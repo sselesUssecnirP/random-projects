@@ -30,11 +30,11 @@ app.whenReady().then(() => {
     })
     */
 
-    createWindow({ height: 1600, width: 900, webPreferences: { nodeIntegration: true, contextIsolation: false } }, "index.html");
+    createWindow({ height: 550, width: 650, webPreferences: { nodeIntegration: true, contextIsolation: false } }, "index.html");
 
     console.log('loaded!')
     app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) createWindow({ height: 1600, width: 900, webPreferences: { nodeIntegration: true, contextIsolation: false } }, "index.html");
+        if (BrowserWindow.getAllWindows().length === 0) createWindow({ height: 550, width: 550, webPreferences: { nodeIntegration: true, contextIsolation: false } }, "index.html");
     });
 });
 

@@ -1,4 +1,8 @@
 
+button {
+    border: none;
+}
+
 table {
     margin: 0 auto;
     border: 3px rgb(224, 160, 22) solid;
