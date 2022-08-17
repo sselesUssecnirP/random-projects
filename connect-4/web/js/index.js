@@ -9,21 +9,29 @@ const detectWinner = () => {
     let keys = Object.keys(tableItems)
     keys.pop()
     console.log(keys)
+    let itemsv = ["", "", "", "", "", ""];
+    let itemsh = ["", "", "", "", "", ""];
+    let itemsd = [];
     keys.forEach(key => {
-        let itemsv = "";
         tableItems[key].forEach(item => {
-            itemsv = `${itemsv}${item.token.charAt(0)}`
+            itemsv[Number.parseInt(key.charAt(key.length-1))] = `${itemsv[Number.parseInt(key.charAt(key.length-1))]}${item.token !== "" ? item.token.charAt(0) : " "}`
         });
+    });     
 
-        
-
-        console.log(`AFTER dropToken() -- items: ${itemsv}`)
-
-        if (/y{4}/.test(itemsv)) 
-            userWon('yellow');
-        else if (/r{4}/.test(itemsv))
-            userWon('red');
+    keys.forEach(key => {
+        tableItems[key].forEach(item => {
+            itemsh[item.line - 1] = `${itemsh[item.line - 1]}${item.token !== "" ? item.token.charAt(0) : " "}`
+        });
     });
+
+    
+
+        console.log(`AFTER dropToken() -- items: ${itemsv} -- itemsh: ${itemsh}`)
+
+        if (itemsv.some(item =>  /y{4}/.test(item)) || itemsh.some(item =>  /y{4}/.test(item))) // tests for y {n} times 
+            userWon('yellow');
+        else if (itemsv.some(item =>  /r{4}/.test(item)) || itemsh.some(item =>  /r{4}/.test(item))) // tests for r {n} times 
+            userWon('red');
 }
 
 let currentTurn = "yellow";
@@ -125,15 +133,11 @@ const tableItems = {
 
             if (iteration < 5)
                 if  (tableItems[`column${column}`][iteration + 1].token == "") setTimeout(doTheThing, 95, iteration + 1, column, theTurn, id)
+            else
+                detectWinner()
         }
 
         setTimeout(doTheThing, 95, 0, column, theTurn, id)
-
-        await ((ms) => {
-            return new Promise(resolve => setTimeout(resolve, ms))
-        })(125*7)
-
-        detectWinner()
     }
 };
 

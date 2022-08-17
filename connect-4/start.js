@@ -30,7 +30,7 @@ app.whenReady().then(() => {
     })
     */
 
-    createWindow({ height: 550, width: 650, webPreferences: { nodeIntegration: true, contextIsolation: false } }, "index.html");
+    createWindow({ height: 475, width: 525, webPreferences: { nodeIntegration: true, contextIsolation: false } }, "index.html");
 
     console.log('loaded!')
     app.on('activate', () => {
